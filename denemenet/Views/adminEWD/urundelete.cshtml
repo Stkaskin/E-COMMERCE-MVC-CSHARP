@@ -1,0 +1,49 @@
+﻿@model denemenet.Models.Tables.urun
+@{
+    ViewBag.Title = "urundelete";
+    Layout = "~/Views/adminEWD/ewdLayout.cshtml";
+  
+   
+}
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+</head>
+<body>
+    <h2>ÜRÜN SİLME EKRANI</h2>
+    <div class="text-center">
+        <h2>Silmek İstediğinize Emin Misiniz?</h2>
+        @using (Html.BeginForm())
+        {
+    <div class="">
+        <input type="submit" value="Sil" class="btn btn-danger center-margin"  />
+        @Html.ActionLink("VAZGEÇ", "ozet", "admin", new { }, new { @class = "btn center-margin" })
+    </div>
+        }
+        @*@Html.ActionLink("SİL", "urundelete", "adminEWD", new { }, new { @class = "btn btn-danger" })*@
+       
+    </div>
+    <br />
+    <br />
+    <div class="text-center">
+        <h2>ÜRÜNÜN BİLGİSİ</h2>
+
+        <div class="center-margin" style="margin:auto;">
+            <div class="">
+
+                <span>İD:</span> <strong>@Model.id</strong>
+            </div>
+            <div class="">
+                <span>ADİ:</span> <strong>@Model.Adi</strong>
+            </div>
+            <div class="">
+                <span>KATAGORİ ADİ:</span> <strong>@Model.katagori.name</strong>
+            </div>
+            <div class="">
+                <span>RESİM:</span> <img  src="~/image/urun_resim/@Model.Resim" class="img-circle" style="width:40%" />
+            </div>
+        </div>
+
+
+
+    </div>
+</body>

@@ -1,0 +1,38 @@
+﻿@model denemenet.Models.Tables.urun
+@{
+    ViewBag.Title = "urunedit";
+    Layout = "~/Views/adminEWD/ewdLayout.cshtml";
+    var urun = ViewBag.urun;
+}
+
+<div class="center-margin">
+    <div class="d-flex justify-content-center">
+        <h1>ÜRÜN Güncelleme Sayfası</h1>
+        <hr />
+        <div class="center-block">
+            @using (Html.BeginForm())
+            {
+                <div class=" col-md-7 col-sm-11 center-margin">
+                    <span class="input-group-text"  id="basic-addon1">ÜRÜN ADI</span>
+                    @Html.TextBoxFor(x => x.Adi, new { @class = "form-control", placeholder = "ADI:", aria_label = "Adi", aria_describedby = "basic-addon1" })
+                </div>
+                <div class=" col-md-7 col-sm-11 center-margin">
+                    <span class="input-group-text" id="basic-addon1">Katagori ID</span>
+                    @Html.TextBoxFor(x => x.katagoriID, new { @class = "form-control", placeholder = "Katagori ID", aria_label = "katagoriID", aria_describedby = "basic-addon1" })
+                    
+                </div>
+                <h1></h1>
+                <div class=" col-sm-2 center-margin">
+                    @Html.ActionLink("İptal", "Urun", "admin" ,new { },new { @class = "btn btn-info" })
+                    <input type="submit" value="Güncelle" class="btn btn-success" />
+
+                </div>
+            }
+        </div>
+        <hr />
+   
+    </div>
+</div>
+
+
+

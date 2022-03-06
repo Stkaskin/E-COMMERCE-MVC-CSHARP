@@ -1,0 +1,302 @@
+﻿
+@model denemenet.Models.detayViewModel
+
+@{
+    ViewBag.Title = "detayurun";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+    var urunbilgi = ViewBag.urun;
+
+}
+
+<style>
+    .nav-item {
+        width: 33%;
+    }
+
+    .nav > li > a:hover {
+        background: #fbfafa;
+    }
+
+    .nav > li > a:focus {
+        background: #fbfafa;
+    }
+
+    .nav-link {
+        width: 100%;
+        height: 100%;
+        background: #e7e7e7;
+        color: #504ee4;
+    }
+
+        .nav-link.active {
+            font-weight: 700;
+            color: #3b497d;
+            background: #fbfafa;
+            border: 0.1px solid #e6e6e64d;
+        }
+</style>
+
+@*<ul class="share-list">
+        <li><a href="https://www.facebook.com/share.php?u=@HttpContext.Current.Request.Url" target="_blank"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="https://twitter.com/intent/tweet?text=Tiens&amp;url=@HttpContext.Current.Request.Url" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=@HttpContext.Current.Request.Url;title=Deta" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+    </ul>*@
+
+
+
+<div class="row no-gutters">
+    <div class="col-md-8 offset-md-2 col-lg-5 offset-lg-0">
+        <div class="gallery-holder">
+            <div class="gallery-image">
+                <img id="imageBig" src="/image/urun_resim/@urunbilgi.Resim" class="" alt="UrunResim" title="kordiseps">
+            </div>
+
+            <ul class="thumb-images">
+
+                <li class="current"><img src="/image/urun_resim/@urunbilgi.Resim" class="" alt="kordiseps" title="kordiseps"></li>
+                @foreach (var resimM in Model.ResimListesi)
+                {
+                    <li class=""><img src="/image/urun_resim/@resimM.resimYolu" class="" alt="kordiseps" title="kordiseps"></li>
+                }
+
+                @*<li class="current" id="Image1" onclick="ImageChange('/image/image4duvar.jpg', this.id)"><img src="/image/image4duvar.jpg" class="" alt="kordiseps" title="kordiseps"></li>
+                    <li class="" id="Image2" onclick="ImageChange('/image/detakatagoriresim/islak_mendil.jpg', this.id)"><img src="/image/detakatagoriresim/islak_mendil.jpg" onclick="ImageChange(this.src)" class="" alt="kordiseps" title="kordiseps"></li>
+                    <li class="" id="Image3" onclick="ImageChange('/image/detakatagoriresim/karton_bardak.jpg', this.id)"><img src="/image/detakatagoriresim/karton_bardak.jpg" onclick="ImageChange(this.src)" class="" alt="kordiseps" title="kordiseps"></li>*@
+            </ul>
+        </div>
+        <script>
+            $(".thumb-images li").on("click", function () {
+
+                $(this).siblings().removeClass('current');
+                $(this).addClass("current");
+
+                document.getElementById("imageBig").src = $("img", this).attr("src");
+
+            });
+        </script>
+    </div>
+    <div class="col-lg-7">
+        <div class="product-introduction">
+            <h3> @ViewData["Baslik"]</h3>
+            <h1> @ViewData["AltBaslik"]</h1>
+
+
+        </div>
+        <div class="col-lg-8">
+
+            <a href="https://wa.me/905469359716?text=Merhaba  @ViewData["AltBaslik"] Ürünü Hakkında bilgi almak istiyordum . ÜRÜN LİNKİ:@HttpContext.Current.Request.Url" target="_blank">
+                <i id="Whatsapp-Btn" type="button" class="btn btn-success , swiper-wrapper bx-crm-widget-form-config-sidebar-chat-border  " style="height:40px;"><i class="fa fa-whatsapp my-float fa-2x fa-border"></i>Whatsapp Fiyat Sor</i>
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="swiper-container-3d fa-border">
+        <ul class="nav nav-tabs" id="myTab" role="tablist" style="width:80%;">
+            <li class="nav-item">
+                <a class="nav-link active" id="property-tab" data-toggle="tab" href="#ozellik" role="tab" aria-controls="aciklama" aria-selected="true">Açıklama</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="comment-tab" data-toggle="tab" href="#yorum-soru" role="tab" aria-controls="yorum" aria-selected="false">Yorumlar Ve Sorular</a>
+            </li>
+            @*<li class="nav-item">
+                    <a class="nav-link" id="comment-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
+                </li>*@
+            <li class="nav-item">
+                <a class="nav-link" id="calculation-tab" data-toggle="tab" href="#hesaplama" role="tab" aria-controls="hesaplama" aria-selected="false">BAKIM</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="ozellik" role="tabpanel" aria-labelledby="property-tab">
+                <p>
+                    Sultan tavuğunun orta boy ve minyatür olan iki türü bulunur. Sultan tavuğu türü dünyada nadir olan bir süs tavuğudur. Genellikle beyaz renkte olurlar. Bu tavukların başlarının üzerinde tepeleri ve çenelerinin altında bulunan sakalları vardır. Bacak yapıları paçalı ve beş tırnakları vardır. Bu tavuk türü oldukça sakin ve yaşadığı yere rahat alışabilen bir tavuk türüdür. Yıllık 70 adet yumurtaları olur. Sultan tavukları genellikle süs tavuğu olarak yetiştiriliyor. Sultan tavukları Batı ülkelerinde yapılan süs tavuğu müsabakalarında mutlaka yerini alır.<br>
+                    <strong>&nbsp;Sultan Tavuğu Tarihçesi </strong><br>
+                    Sultan tavukları Güney Avrupa ülkelerinde ortaya çıkmıştır. Fakat Osmanlılar da sultan tavuğunu çok beğenmiştir.&nbsp; Çoğunlukla sultan tavuğuna padişahlar saray bahçelerinde süs tavuğu alarak bakarlardı. Bu tavuğa sultan tavuğu denilmesinin nedeni başlarının üzerinde tepe bulunması ve bu tepenin padişahların başındaki kavuğa benzemesidir. Sultan tavuğunun 1874’te Amerikan Kümes Hayvanları Birliği’nin kusursuzluk standartlarına kabulü resmi olarak geçmiştir. Erkekleri yaklaşık 2 kg, dişileri ise 1,5kg ağırlığındadır.
+                </p>
+                <p>&nbsp;</p>
+                <p>
+                    <strong>Sultan Tavuğu Yumurta Ve Kuluçka Özellikleri;</strong><br>
+                    Yaklaşık olarak yılda 70 adet küçük beyaz yumurta yaparlar. Bu türün gurk olduğu çok az görülür.
+                </p>
+                <p>
+                    <strong>Davranışları ve bakımı;</strong><br>
+                    Sakin mizaçlı tavuklardır.&nbsp; Kapalı ortamlarda yetiştirilebilirler. Sultan tavuklarının barındığı yerin kuru ve temiz olması önemlidir. Bunu nedeni ise sultan tavuklarını pislenmeye müsait olan uzun tüylerinin olmasıdır. Bu tavuk türünün ayak tüyleri de çok uzundur.
+                </p>
+                <p>&nbsp;</p>
+                <p>Kuluçka makinası ‘nda türü nadir görülen sultan tavuklarını yetiştirebilirsiniz.&nbsp; Üretimi çok özen isteyen ve yaygın olmayan sultan tavuğunun kuluçka makinası sayesinde üretimi kolay olacaktır. Fakat kuluçka makinası ‘nda ki hava koşulları ve yetiştirileceği ortam çok önemlidir. Sultan tavukların kuluçka makinası ‘nda üretimi fazla olmasa da yapılmaktadır. Sizde bu türü nadir bulunan ve Osmanlı saray bahçelerini güzellikleri ile süsleyen bu güzel süs tavuk türünü kuluçka makinası ile ve uygun olan ısı, nem ve havalandırma ile rahatlıkla üretebilirsiniz.</p>
+                <p>&nbsp;</p>
+            </div>
+            <div class="tab-pane" id="yorum-soru" role="tabpanel" aria-labelledby="comment-tab">
+                @*<nav class="navbar navbar-expand-sm navbar-dark">
+                        <img src="https://i.imgur.com/CFpa3nK.jpg" width="20" height="20" class="d-inline-block align-top rounded-circle" alt=""> <a class="navbar-brand ml-2" href="#" data-abc="true">Rib Simpson</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                        <div class="end">
+                            <div class="collapse navbar-collapse" id="navbarColor02">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item"> <a class="nav-link" href="#" data-abc="true">Work</a> </li>
+                                    <li class="nav-item"> <a class="nav-link" href="#" data-abc="true">Capabilities</a> </li>
+                                    <li class="nav-item "> <a class="nav-link" href="#" data-abc="true">Articles</a> </li>
+                                    <li class="nav-item active"> <a class="nav-link mt-2" href="#" data-abc="true" id="clicked">Contact<span class="sr-only">(current)</span></a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>*@
+                <!-- Main Body -->
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-5 col-md-6 col-12 pb-4">
+                                <h1>YORUMLAR</h1>
+                                @foreach (var mesaj in Model.MesajListesi)
+                                {
+                                    <div class="comment mt-4 text-justify float-left fa-border">
+                                        <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle float-left" width="40" height="40">
+                                        <h4>@mesaj.name</h4> <span>@FakeData.DateTimeData.GetDatetime()</span> <br>
+                                        <p>@mesaj.text</p>
+
+                                    </div>
+                                    <p>@mesaj.mail</p>
+                                }
+
+                                <div class="text-justify darker mt-4 float-right">
+                                    <div>
+                                        <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle" width="40" height="40">
+                                        <h4>Admin </h4> <span>- 20 October, 2018</span>
+                                    </div> <br>
+                                           <p>Aynen öyle size vereceğimiz klavuzda dikkat etmeniz gereken şeyler yazacaktır ve sorunsuz yaptığınız takdirde ömrü sizinle olacaktır.</p>
+                                </div>
+                                @*<div class="comment mt-4 text-justify">
+                                        <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+                                        <h4>Jhon Doe</h4> <span>- 20 October, 2018</span> <br>
+                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                                    </div>
+                                    <div class="darker mt-4 text-justify">
+                                        <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle" width="40" height="40">
+                                        <h4>Rob Simpson</h4> <span>- 20 October, 2018</span> <br>
+                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                                    </div>*@
+                            </div>
+                            <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                                <form id="algin-form" onsubmit="sendComments();return false">
+                                    <div class="form-group">
+                                        <h4>Sizde Tecrübelerinizi ve Sorularınızı Yazın.</h4> <label for="message">Mesajınız</label> 
+                                        <textarea name="text" id="MessageF" msg cols="30" rows="5" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group"> <label for="name">Adınız Soyadınız</label> 
+                                    <input type="text" name="name" id="fullname" class="form-control" required>
+                                    </div>
+                                    <div class="form-group"> <label for="email">E-posta (Email)</label>
+                                    <input type="text" name="mail" id="email" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="text-secondary">Mesajınız onaylanıp yanıtlandıktan sonra yayınlanacaktır. Mail ile bilgilendirileceksiniz.</p>
+                                    </div>
+                                    <div class="form-inline"> <input type="checkbox" name="check" id="checkbx" class="mr-1" required> <label for="subscribe">Tecrübe veya Soru mesajımı onaylıyorum.</label> </div>
+                                    <div class="form-group"> <button type="submit" id="post" class="btn" >Post Comment</button> </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            @*<div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">@FakeData.TextData.GetSentences(5)</div>*@
+            <div class="tab-pane" id="hesaplama" role="tabpanel" aria-labelledby="calculation-tab"><h1>DİKKAT ETMENİZ GEREKEN ÖN ÖNEMLİ DURUMLAR. .....</h1></div>
+        </div>
+    </div>
+
+
+    <div id="FullBackGround" class=" fullBackGround">
+     
+        <div class="fullBackGround active" style=" background: #0e0e0e80; z-index:-1;"></div>
+        <div class="midAlert">
+      
+            <div class="success-animation">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
+             
+                <div>
+                   
+                  
+                    <h3 id="TextAlert">Selam</h3>
+                </div>
+            </div>
+     
+            
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+   
+        function FullBackAlert(message) {
+
+            document.getElementById("TextAlert").innerHTML = message;
+            document.getElementById("FullBackGround").classList.toggle("active");
+            setTimeout(function () { document.getElementById("FullBackGround").classList.toggle("active"); },4000);
+        }
+
+        //Mail POST not reflesh
+        /*$("#btnGondert").click(*/
+        function sendComments() {
+           // alert("girdi");
+            //document.getElementById("FormSend").style.display = "none";
+            //document.getElementById("FormSending").style.display = "block";
+                           //burada css active
+            $("#post").attr("disabled", "true");
+
+                             var MessageComments = {
+                                 name: fullname.value,
+                                 mail: email.value, 
+
+                                 text: MessageF.value
+
+
+            };
+           // alert(MessageComments.name + " ss=" + MessageComments.mail + " ff" + MessageComments.text);
+
+                        var theData = JSON.stringify(MessageComments);
+                            $.ajax({
+                                type: "POST",
+                                url: "/urun/CommentsPost",  @* Controller Name / Action name    *@
+                                contentType: "application/json; charset=utf-8",
+
+                                data: theData,
+                                dataType: "json",
+                                success: function (data) {
+                                    $("#post").removeAttr("disabled");
+
+                                
+                                    FullBackAlert(data)
+                                   // alert(v+"tamamdır");
+
+
+                                },
+                                error: function (data) {
+
+                                    $("#post").removeAttr("disabled"); FullBackAlert("Mesaj Gönderimi Başarız")
+                                  //  alert("hata:" + data);
+                                           //css active
+                                }
+
+
+                            });
+
+        }
+    </script>
+
+
+    <script>
+
+
+        /*
+         eleman seçimi tab
+        $(function () {
+            $('#myTab li:last-child a').tab('show')
+        })*/
+
+    </script>
+
+</div>
