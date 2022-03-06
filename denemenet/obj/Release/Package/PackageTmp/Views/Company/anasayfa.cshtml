@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "anasayfa";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+    // Layout = null;
+}
+
+<html lang="en">
+<head>
+    <script>
+    document.getElementById("pageback").style.display = "none";
+        document.getElementById("containerid").className = "";
+        document.getElementById("containeridshare").style.display = "none";
+
+    </script>
+    <meta charset="UTF-8">
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+
+
+    <title>CodePen - Slider transitions</title>
+
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/filipelinhares/ress/master/dist/ress.min.css">
+
+    <link href="~/Content/slider.css" rel="stylesheet" />
+
+    <script>
+        window.console = window.console || function (t) { };
+    </script>
+
+
+
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+
+
+
+</head>
+
+<body translate="no">
+    <!-- Page Wrap -->
+    <!-- Page Wrap -->
+    <div class="page-wrap">
+
+        <div id="home-slider">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-one">
+                        <div class="swiper-image" data-swiper-parallax-y="-20%">
+                            <div class="swiper-image-inner swiper-image-left swiper-image-one">
+                                <h1>TAVUK <span class="emphasis">PAZARI</span>. <br><span>GÜVENLİLİR ADRES</span></h1>
+                                <p>2021 yılında kurulmuştur.</p>
+                            </div>
+                        </div>
+                        <div class="swiper-image" data-swiper-parallax-y="35%">
+                            <div class="swiper-image-inner swiper-image-right swiper-image-two">
+                                <p class="paragraph">
+                                    En iyi kaliteli tavuklar buradadır
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-two">
+                        <div class="swiper-image" data-swiper-parallax-y="-20%">
+                            <div class="swiper-image-inner swiper-image-left swiper-image-three">
+                                <h1>Tavuk Cins <span class="emphasis">Liste</span>. <br><span>Katagorisi İçin</span></h1>
+                                <p>TAVUK KATAGORİSİNE GİT</p>
+                            </div>
+                        </div>
+                        <div class="swiper-image" data-swiper-parallax-y="35%">
+                            <div class="swiper-image-inner swiper-image-right swiper-image-four">
+                                <p class="paragraph">
+                                    Sitemizde bulunan tüm tavukların özellikleri ve önemli bakım ve hususları size aktardığımız bu sitemizde merak ettiklerinizi kolayca sorabilirsiniz.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-three">
+                        <div class="swiper-image" data-swiper-parallax-y="-20%">
+                            <div class="swiper-image-inner swiper-image-left swiper-image-five">
+                                <h1>Tavuk <span class="emphasis">Bakımı </span>. <br><span>Nasıl Olmalı?</span></h1>
+                                <p>Tavuk beslerken nelere dikkat edilmeli</p>
+                            </div>
+                        </div>
+                        <div class="swiper-image" data-swiper-parallax-y="35%">
+                            <div class="swiper-image-inner swiper-image-right swiper-image-six">
+                                <p class="paragraph">
+                                <p class="paragraph"> 1. Her Zaman Yaşa Uygun Besleme</p>
+                                <p class="paragraph">2. Mevsimsel Davranışları</p>
+                                <p class="paragraph">3. Serbest Zaman ve Dolaşmak</p>
+                                <p class="paragraph">4. Takviyeler</p>
+                                <p class="paragraph">5. Su ve Kalitesi Önemlidir</p>
+                                <p class="paragraph">
+                                    <a class="btn btn-danger" style="        background: radial-gradient(#2c3237,#4c2c2c47);  width: -webkit-fill-available;    outline: none; border-radius: 53px;">Devamını Oku... </a>
+                                </p>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+    <script id="rendered-js">
+        var mySwiper = new Swiper(".swiper-container", {
+            direction: "vertical",
+            loop: true,
+            pagination: ".swiper-pagination",
+            grabCursor: true,
+            speed: 1000,
+            paginationClickable: true,
+            parallax: true,
+            autoplay: false,
+            effect: "slide",
+            mousewheelControl: 1
+        });
+//# sourceURL=pen.js
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>

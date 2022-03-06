@@ -1,0 +1,35 @@
+﻿@model denemenet.Models.UrunModelView
+@{
+    ViewBag.Title = "Katagori";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+
+<div class="row">
+
+
+
+    @foreach (var Ktgr in Model.KatagoriListesi)
+    {
+        <div class="col-md-6 col-lg-4">
+
+
+            <article class="card">
+                @*href="~/urun/urunler/id seklindeydi"*@
+                <a href="@Url.Action("urunler", "urun", new { id = Ktgr.ID })" title="Gıda Takviyeleri ">
+                    <div class="image-holder">
+                 
+                        <img src="~/image/detakatagoriresim/@Ktgr.resim" class="" alt="@Ktgr.name" title="@Ktgr.name">
+                    </div>
+                    <div class="article-content">
+                        <h3>@Ktgr.name </h3>
+                    </div>
+                </a>
+            </article>
+
+        </div>
+    }
+
+
+
+
+</div>

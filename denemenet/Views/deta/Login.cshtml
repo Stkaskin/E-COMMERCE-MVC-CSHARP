@@ -1,0 +1,69 @@
+﻿@model denemenet.Models.admin
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gentelella Alela! | </title>
+
+    <link href="~/AdminTemplate/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/AdminTemplate/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="~/AdminTemplate/vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <link href="~/AdminTemplate/vendors/animate.css/animate.min.css" rel="stylesheet">
+
+    <link href="~/AdminTemplate/build/css/custom.min.css" rel="stylesheet">
+    
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+  
+
+</head>
+<body class="login">
+    <div><div class="fadeIn first">
+  
+</div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content"><img src="/image/logo.png" id="icon" alt="Admin Icon">
+                    @using (Html.BeginForm("Login", "deta"))
+
+                    {
+                        
+
+                    <h1>Admin Giriş</h1>
+                        <div class=" ">
+                            <span class="input-group-text" id="basic-addon1">Admin</span>
+                            @Html.TextBoxFor(x => x.username, new { @class = "form-control", placeholder = "Kullanici:", aria_label = "username", aria_describedby = "basic-addon1", required = "true" })
+                        </div>
+                        <div class="">
+                            <span class="input-group-text" id="basic-addon1">Parola</span>
+                            @Html.TextBoxFor(x => x.parola, new { @class = "form-control", placeholder = "parola:", aria_label = "parola", aria_describedby = "basic-addon1", required = "true" })
+                        </div>
+                        <input type="submit" name="Gonder" class="btn btn-outline-success submit" value="Giriş Yap" />
+
+                    }
+
+                </section>
+            </div>
+
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+  
+
+</body>
+</html>

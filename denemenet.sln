@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "denemenet", "denemenet\denemenet.csproj", "{F3EE8143-2E26-4F60-A0C1-FF9903ED160F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3EE8143-2E26-4F60-A0C1-FF9903ED160F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3EE8143-2E26-4F60-A0C1-FF9903ED160F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3EE8143-2E26-4F60-A0C1-FF9903ED160F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3EE8143-2E26-4F60-A0C1-FF9903ED160F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B64FD0C6-A837-4783-A012-582F5232811D}
+	EndGlobalSection
+EndGlobal

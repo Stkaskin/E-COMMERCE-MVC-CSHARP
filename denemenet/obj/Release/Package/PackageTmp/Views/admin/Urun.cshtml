@@ -1,0 +1,137 @@
+﻿
+@model denemenet.Models.UrunModelView
+
+@section AddToHead{
+
+    <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link href="~/AdminTemplate/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/AdminTemplate/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="~/AdminTemplate/vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <link href="~/AdminTemplate/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+
+    <link href="~/AdminTemplate/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="~/AdminTemplate/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="~/AdminTemplate/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="~/AdminTemplate/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="~/AdminTemplate/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="~/AdminTemplate/build/css/custom.min.css" rel="stylesheet">
+}
+@{
+    //Layout = null;
+    ViewBag.Title = "Urun";
+    Layout = "~/Views/admin/AdminLayout.cshtml";
+
+
+
+
+
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+
+<body class="nav-md">
+    <div class="">
+
+
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                 
+                    <div class="x_title">
+                        <h2>
+                            ÜRÜNLER  TABLOSU <br />
+                            ÜRÜN SAYISI:  @Model.UrunListesi.Count
+                        </h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                    <div class="x_content">
+                        <div class="row">
+                            @Html.ActionLink("Yeni Ekle", "newurun", "adminEWD",new { } ,new { @class = "btn btn-success" })
+                            <div class="col-sm-12">
+                                <div class="card-box table-responsive">
+                                    <p class="text-muted font-13 m-b-30">
+                                        ÜRÜNLER TABLOSUNDA HIZLI ARAMA :SEARCH BULUNMAKTADIR
+                                    </p>
+
+                                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+
+                                        <thead>
+                                            <tr>
+                                                <th>ÜRÜN İD</th>
+                                                <th>ÜRÜN ADI</th>
+                                                <th>KATAGORİ</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th> </th>
+
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach (var urn in Model.UrunListesi)
+                                            {
+
+
+                                                <tr>
+                                                    <td>@urn.id</td>
+                                                    <td>@urn.Adi</td>
+                                                    <td>@urn.katagori.name</td>
+
+                                                    @*<td>  <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a></td>*@
+
+
+                                                    <td>    <a href="@Url.Action("urunedit","adminEWD",new { id=urn.id })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> GÜNCELLE </a></td>
+                                                    <td>  <a href="@Url.Action("urundelete","adminEWD",new { id=urn.id })" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> SİL </a></td>
+                                                    <td>@urn.Resim</td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+
+
+</body>
+</html>

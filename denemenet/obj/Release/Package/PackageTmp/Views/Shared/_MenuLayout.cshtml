@@ -1,0 +1,545 @@
+﻿@* bunu yapmamın sebebi layouta partial dahil denememe rağmen başlangıçta controllera girememek  çözüm 7 saat *@
+
+@{ denemenet.Models.ContextDb contextDb = new denemenet.Models.ContextDb();
+    var modelim = contextDb.KatagoriTablosu.ToList();
+    denemenet.Models.mail mailView = new denemenet.Models.mail();
+    
+}
+
+@{
+
+    Layout = null;
+
+}
+
+
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canlı Tavuk AL | @this.ViewContext.RouteData.Values["Action"].ToString().ToUpper() </title>
+
+    <meta name="description" content="Canlı Tavuk AL Ambalaj Sektörde yeni fakat aktiviteleri yüksek olan bir ambalaj üreticisidir.">
+    <meta name="keywords" content="hakkında, Canlı Tavuk AL hakkimizda, Canlı Tavuk AL hakkında, Canlı Tavuk AL, Canlı Tavuk AL group">
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900|Source+Sans+Pro:700" rel="stylesheet">
+
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        //Mail POST not reflesh
+        /*$("#btnGondert").click(*/
+        function send() {
+            document.getElementById("FormSend").style.display = "none";
+            document.getElementById("FormSending").style.display = "block";
+                           //burada css active
+                             $("#btnGondert").attr("disabled", "true");
+
+                             var theContact = {
+                                 name: nameF.value,
+                                 mailadress: mailF.value,
+                                 sub: subF.value,
+                                 message: messageF.value
+                             };
+
+                            var theData = JSON.stringify(theContact);
+                            $.ajax({
+                                type: "POST",
+                                url: "/Shared/Postmail",  @* Controller Name / Action name    *@
+                                contentType: "application/json; charset=utf-8",
+
+                                data: theData,
+                                dataType: "json",
+                                success: function (data) {
+                                    $("#btnGondert").removeAttr("disabled");
+                                    //css active
+
+                                    if (data == "1") { sendComplate(1); }
+                                    else sendComplate(0);
+
+
+
+                                },
+                                error: function (data) {
+
+                                    $("#btnGondert").removeAttr("disabled");
+                                    sendComplate(0);
+                                           //css active
+                                }
+
+
+                            });
+
+        }/*)*/;
+        function sendComplate(fnishCE) {
+            if (fnishCE == 1) {
+
+                document.getElementById("FormSendComplateTextId").innerHTML = "Gönderildi";
+                document.getElementById("FormSendComplateIconId").className ="FormSendComplateIcon";
+            }
+            else {
+
+                document.getElementById("FormSendComplateTextId").innerHTML = "HATA <br/>BAĞLANTI KURULAMADI";
+                document.getElementById("FormSendComplateIconId").className = "FormSendComplateIconActive";
+            }
+            document.getElementById("FormSending").style.display = "none";
+            document.getElementById("FormComplate").style.display = "block";
+            setTimeout(function () {
+                document.getElementById("FormSend").style.display = "block";
+                document.getElementById("FormComplate").style.display = "none";
+
+            }, 2000);}
+    </script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-125908641-1');
+    </script>
+    <link href="~/Content/menustyles.css" rel="stylesheet">
+    <link href="~/Content/MenuLayout.css" rel=" stylesheet" />
+    <link href="~/Content/menulayoutbil1.css" rel="stylesheet" />
+    <link href="~/Content/menulayoutbil2.css" rel="stylesheet" />
+    <link href="~/Content/menulayoutbil3.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("header", required: false)
+
+</head>
+<body>
+
+
+
+
+    <header id="header">
+        <div id="header-left">
+            <div id="menu-switch" onclick="menuswitchOpen()">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="container">
+            <div id="menu-holder">
+                <a href="/" id="logo">
+                    <img src="~/image/logo.png" alt="Canlı Tavuk AL Logo" title="Canlı Tavuk AL Logo">
+                </a>
+                <ul id="main-menu">
+                    <li><a id="shop-link" href="#link" target="_blank"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li><a href="/iletisim"><i class="fa fa-phone"></i></a></li>
+                </ul>
+                <ul id="social-menu">
+                    <li><a href="https://www.facebook.com/detaambalaj/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/detaambalaj/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="https://www.youtube.com/channel/detaambalaj" target="_blank"><i class="fa fa-youtube"></i></a></li>
+
+
+
+                </ul>
+            </div>
+        </div>
+        <div id="main-nav">
+            <button id="close-menu" class="btn-close btn-close-white" aria-label="Close" onclick="menucloseClosed()">
+                <i class="fa fa-close"></i>KAPAT
+            </button>
+            <ul id="full-menu">
+                <li class="has-children">
+                    <a href="/Company/hakkimizda">HAKKIMIZDA</a><ul>
+                        <li><a href="/Company/hakkimizda">Canlı Tavuk AL Hakkında</a></li>
+                        <li><a href="/Company/kurumsal">Kurumsal</a></li>
+                        <li><a href="/Company/MarkaFelsefe">Marka Felsefesi</a></li>
+                        @*<li><a href="/Company/teknoloji-ve-profesyonellik">Teknoloji ve Profesyonellik</a></li>
+                            <li><a href="/Company/ustun-ekipman-yeterli-uretim">Üstün Ekipman &amp; Yeterli Üretim</a></li>
+                            <li><a href="/Company/is-yeri-disinda-satis-yetki-belgesi">İş Yeri Dışında Satış Belgesi</a></li>*@
+
+                    </ul>
+                </li>
+                <li class="has-children">
+                    <a href="/urun/katagori">ÜRÜNLER</a><ul>
+                        <li class="has-children">
+                            <a href="/urun/katagori">TAVUK</a>
+                            <ul style="overflow: auto; height: -webkit-fill-available; min-height: 246px; ">
+
+
+
+                                @foreach (var ktgr in modelim)
+                                {
+                                    @Html.ActionLink(ktgr.name, "urunler", "urun", new { id = ktgr.ID }, new { })
+                                    @*<li><a href="~/urun/urunler/@ktgr.ID">@ktgr.name</a></li>*@
+                                }
+                                @*@foreach (var ktgr in ModelLayout)
+                                    {
+                                        <li><a href="@ktgr.name"></a></li>
+                                    }*@
+
+                                @*<li><a href="#">Yemek Setleri</a></li>
+                                    <li><a href="#">Islak Mendil</a></li>
+                                    <li><a href="#">Tuz,Biber,Şeker Dolumu</a></li>
+                                    <li><a href="#">Karton Bardak</a></li>
+                                    <li><a href="#">Peçete Üretimi</a></li>
+                                    <li><a href="#">Ambalaj Kağıdı</a></li>
+                                    <li><a href="#">Çatal Bıçak Poşeti</a></li>
+                                    <li><a href="#">Kese Kağıdı</a></li>
+                                    <li><a href="#">Baskılı Poşet</a></li>
+
+                                    <li><a href="#">Tek Kullanım Şampuan</a></li>
+                                    <li><a href="#">Tek Kullanım Gazlı Bez</a></li>*@
+
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            @*<a href="/urunler/cilt-ve-kisisel-bakim">Sürekli Kullanım</a>*@<ul>
+                                <li><a href="#">***</a></li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+
+                @*<li><a href="/iletisim">İLETİŞİM</a></li>*@
+            </ul>
+            <ul id="horizontal-menu"><li><a href="#registerLınk" target="_blank">Canlı Tavuk AL'ya Katılın</a></li><li><a href="#katilimlinkdeta" target="_blank">Bizimle Çalışın</a></li><li><a href="#gizlilik" target="_blank">Gizlilik ilkemiz</a></li></ul>        <ul id="inner-social-menu">
+                <li><a href="https://www.facebook.com/detaambalaj/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/detaambalaj/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="https://www.youtube.com/channel/detaambalaj" target="_blank"><i class="fa fa-youtube"></i></a></li>
+            </ul>
+        </div>
+    </header>
+
+    <ul id="bottom-menu" style="display: none;"><li><a href="/Company/hakkimizda">Hakkımızda</a></li><li><a href="/urunler">Ürünler</a></li><li><a href="#duyurular">Duyurular</a></li></ul>
+
+
+    <div id="content">
+
+
+
+
+        <section class="section">
+            <div id="pageback" class="page-heading" >
+                <div class="container">
+                    <h1>@Convert.ToString(ViewData["Baslik"]) </h1>
+                    <h1>@Convert.ToString(ViewData["Altbaslik"]) </h1>
+
+                </div>
+            </div>
+            <div class="container table-bordered" id="containerid">
+                <div id="containeridshare">
+                    <ul class="share-list">
+                        @{string link = @HttpContext.Current.Request.Url.ToString(); }
+                        <li><a href="https://www.facebook.com/share.php?u=@link" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/intent/tweet?text=Tiens&amp;url=@link" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=@link;title=Deta" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+                @RenderBody()
+
+
+            </div>
+
+
+
+        </section>
+    </div>
+
+    <div class="form-mail">
+
+        <div>
+
+
+            <div class="gmail-overlay" id="gmailoverlay" onclick="activeForm()"></div>
+
+            <div class="gmail-form" id="gmailform">
+                <div id="FormComplate" class="FormSendComplate" style="display:none;">
+                    <div class=" FormSendComplateInner">
+                        <div id="FormSendComplateIconId" class="FormSendComplateIcon"></div>
+                        <div class="FormSendComplateText"><h2 id="FormSendComplateTextId" style="font-family:'Segoe Print'">Gönderildi</h2></div>
+                    </div>
+
+                </div>
+                <div id="FormSending" class="FormSend" style="display:none;">
+                    <div class="containerSend">
+                        <div class="boxSend">
+                            <div class="border one"></div>
+                            <div class="border two"></div>
+                            <div class="border three"></div>
+                            <div class="border four"></div>
+
+                            <div class="line one"></div>
+                            <div class="line two"></div>
+                            <div class="line three"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="FormSend">
+                    @*<input autocomplete="off" id="tbad" name="ad" type="text" value="ad girin">
+                        <input id="tbsoyad" name="soyad" type="text" value="soyad girin">*@
+
+                    @*<input id="btnGondert" type="button" value="test gönderiver">*@
+                    <a class="btn-close" style="font-size:50px;" aria-label="Close" onclick="activeForm()">
+                        <span aria-hidden="true">&times;</span>
+                    </a>
+
+                    <h1 class="text-center"> İletişim Formu </h1>
+                    <div class="col col-p-12 ">
+                        <form action="" method="" onsubmit="send();return false">
+                            <div class="col-10">
+                                <div class="card-body p-3">
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fa fa-user text-info"> Ad Soyad</i>
+                                                </div>
+                                            </div>
+                                            <input type="text" id="nameF" class="form-control" name="name" placeholder="Ad Soyad" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fa fa-envelope text-info"> Mail Adresi</i>
+                                                </div>
+                                            </div>
+                                            <input type="email" id="mailF" class="form-control" name="mailadress" placeholder="E-Posta" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fa fa-tag text-info"> Konu</i>
+                                                </div>
+                                            </div>
+                                            <input type="text" id="subF" class="form-control" name="sub" placeholder="Konu" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fa fa-comment text-info"> Mesajınız...</i>
+                                                </div>
+                                            </div>
+                                            <textarea id="messageF" name="message" class="form-control" placeholder="Lütfen Mesajınızı Buraya Yazın.." rows="6" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+
+
+                                        <input id="btnGondert" type="submit" value="GÖNDER" class="btn btn-info btn-block">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="b24-widget-button-block">
+                <div class="b24-widget-button-pulse b24-widget-button-pulse-animate" style="border-color: #00a64c;"></div>
+                <div class="b24-widget-button-inner-block" onclick="activeForm()" style="background: #00a64c;">
+                    <div class="b24-widget-button-icon-container">
+
+                        <div class="b24-widget-button-inner-item b24-widget-button-icon-animation" style="">
+                            <svg class="b24-crm-button-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 28">
+                                <path class="b24-crm-button-webform-icon" fill=" #FFFFFF" fill-rule="evenodd" d="M815.406703,961 L794.305503,961 C793.586144,961 793,961.586144 793,962.305503 L793,983.406703 C793,984.126062 793.586144,984.712206 794.305503,984.712206 L815.406703,984.712206 C816.126062,984.712206 816.712206,984.126062 816.712206,983.406703 L816.712206,962.296623 C816.703325,961.586144 816.117181,961 815.406703,961 L815.406703,961 Z M806.312583,979.046143 C806.312583,979.454668 805.975106,979.783264 805.575462,979.783264 L796.898748,979.783264 C796.490224,979.783264 796.161627,979.445787 796.161627,979.046143 L796.161627,977.412044 C796.161627,977.003519 796.499105,976.674923 796.898748,976.674923 L805.575462,976.674923 C805.983987,976.674923 806.312583,977.0124 806.312583,977.412044 L806.312583,979.046143 L806.312583,979.046143 Z M813.55946,973.255747 C813.55946,973.664272 813.221982,973.992868 812.822339,973.992868 L796.889868,973.992868 C796.481343,973.992868 796.152746,973.655391 796.152746,973.255747 L796.152746,971.621647 C796.152746,971.213122 796.490224,970.884526 796.889868,970.884526 L812.813458,970.884526 C813.221982,970.884526 813.550579,971.222003 813.550579,971.621647 L813.550579,973.255747 L813.55946,973.255747 Z M813.55946,967.45647 C813.55946,967.864994 813.221982,968.193591 812.822339,968.193591 L796.889868,968.193591 C796.481343,968.193591 796.152746,967.856114 796.152746,967.45647 L796.152746,965.82237 C796.152746,965.413845 796.490224,965.085249 796.889868,965.085249 L812.813458,965.085249 C813.221982,965.085249 813.550579,965.422726 813.550579,965.82237 L813.550579,967.45647 L813.55946,967.45647 Z" transform="translate(-793 -961)"></path>
+                            </svg>
+                        </div>
+
+                        <div class="b24-widget-button-inner-item" style="display: none;">
+                            <svg class="b24-crm-button-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 30">
+                                <path class="b24-crm-button-call-icon" fill="#FFFFFF" fill-rule="evenodd" d="M940.872414,978.904882 C939.924716,977.937215 938.741602,977.937215 937.79994,978.904882 C937.08162,979.641558 936.54439,979.878792 935.838143,980.627954 C935.644982,980.833973 935.482002,980.877674 935.246586,980.740328 C934.781791,980.478121 934.286815,980.265859 933.840129,979.97868 C931.757607,978.623946 930.013117,976.882145 928.467826,974.921839 C927.701216,973.947929 927.019115,972.905345 926.542247,971.731659 C926.445666,971.494424 926.463775,971.338349 926.6509,971.144815 C927.36922,970.426869 927.610672,970.164662 928.316918,969.427987 C929.300835,968.404132 929.300835,967.205474 928.310882,966.175376 C927.749506,965.588533 927.206723,964.77769 926.749111,964.14109 C926.29156,963.50449 925.932581,962.747962 925.347061,962.154875 C924.399362,961.199694 923.216248,961.199694 922.274586,962.161118 C921.55023,962.897794 920.856056,963.653199 920.119628,964.377388 C919.437527,965.045391 919.093458,965.863226 919.021022,966.818407 C918.906333,968.372917 919.274547,969.840026 919.793668,971.269676 C920.856056,974.228864 922.473784,976.857173 924.43558,979.266977 C927.085514,982.52583 930.248533,985.104195 933.948783,986.964613 C935.6148,987.801177 937.341181,988.444207 939.218469,988.550339 C940.510236,988.625255 941.632988,988.288132 942.532396,987.245549 C943.148098,986.533845 943.842272,985.884572 944.494192,985.204083 C945.459999,984.192715 945.466036,982.969084 944.506265,981.970202 C943.359368,980.777786 942.025347,980.091055 940.872414,978.904882 Z M940.382358,973.54478 L940.649524,973.497583 C941.23257,973.394635 941.603198,972.790811 941.439977,972.202844 C940.97488,970.527406 940.107887,969.010104 938.90256,967.758442 C937.61538,966.427182 936.045641,965.504215 934.314009,965.050223 C933.739293,964.899516 933.16512,965.298008 933.082785,965.905204 L933.044877,966.18514 C932.974072,966.707431 933.297859,967.194823 933.791507,967.32705 C935.117621,967.682278 936.321439,968.391422 937.308977,969.412841 C938.23579,970.371393 938.90093,971.53815 939.261598,972.824711 C939.401641,973.324464 939.886476,973.632369 940.382358,973.54478 Z M942.940854,963.694228 C940.618932,961.29279 937.740886,959.69052 934.559939,959.020645 C934.000194,958.902777 933.461152,959.302642 933.381836,959.8878 L933.343988,960.167112 C933.271069,960.705385 933.615682,961.208072 934.130397,961.317762 C936.868581,961.901546 939.347628,963.286122 941.347272,965.348626 C943.231864,967.297758 944.53673,969.7065 945.149595,972.360343 C945.27189,972.889813 945.766987,973.232554 946.285807,973.140969 L946.55074,973.094209 C947.119782,972.993697 947.484193,972.415781 947.350127,971.835056 C946.638568,968.753629 945.126778,965.960567 942.940854,963.694228 Z" transform="translate(-919 -959)"></path>
+                            </svg>
+                        </div>
+
+                        <div class="b24-widget-button-inner-item" style="display: none;">
+                            <svg class="b24-crm-button-icon b24-crm-button-icon-active" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 29">
+                                <path class="b24-crm-button-chat-icon" fill="#FFFFFF" fill-rule="evenodd" d="M878.289968,975.251189 L878.289968,964.83954 C878.289968,963.46238 876.904379,962 875.495172,962 L857.794796,962 C856.385491,962 855,963.46238 855,964.83954 L855,975.251189 C855,976.924031 856.385491,978.386204 857.794796,978.090729 L860.589592,978.090729 L860.589592,981.876783 L860.589592,983.76981 L861.521191,983.76981 C861.560963,983.76981 861.809636,982.719151 862.45279,982.823297 L866.179185,978.090729 L875.495172,978.090729 C876.904379,978.386204 878.289968,976.924031 878.289968,975.251189 Z M881.084764,971.465135 L881.084764,976.197702 C881.43316,978.604561 879.329051,980.755508 876.426771,980.93027 L868.042382,980.93027 L866.179185,982.823297 C866.400357,983.946455 867.522357,984.94992 868.973981,984.716324 L876.426771,984.716324 L879.221567,988.502377 C879.844559,988.400361 880.153166,989.448891 880.153166,989.448891 L881.084764,989.448891 L881.084764,987.555864 L881.084764,984.716324 L882.947962,984.716324 C884.517696,984.949819 885.742758,983.697082 885.742758,981.876783 L885.742758,974.304675 C885.742659,972.717669 884.517597,971.465135 882.947962,971.465135 L881.084764,971.465135 Z" transform="translate(-855 -962)"></path>
+                            </svg>
+                        </div>
+
+                    </div>
+                    <div class="b24-widget-button-inner-item b24-widget-button-close">
+                        <svg class="b24-widget-button-icon b24-widget-button-close-item" xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29"><path fill="#FFF" fill-rule="evenodd" d="M18.866 14.45l9.58-9.582L24.03.448l-9.587 9.58L4.873.447.455 4.866l9.575 9.587-9.583 9.57 4.418 4.42 9.58-9.577 9.58 9.58 4.42-4.42"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div id="loading" class="open">
+        <img src="~/image/logo.png">
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+   @{ var str = ViewData["resim"];}
+    <script>
+
+
+        document.getElementById("pageback").style.background = "url('@str') no-repeat center center";
+        document.getElementById("pageback").style.backgroundSize = "cover";
+        
+    </script>
+    <script>
+        function activeForm() {
+            activeFormRun();
+
+
+        }
+        function activeFormRun() {
+            document.getElementById('gmailform').classList.toggle('active');
+
+            document.getElementById('gmailoverlay').classList.toggle('active');
+
+        }
+    </script>
+
+    <script>
+        setTimeout(function () { document.getElementById("loading").className = ""; }, 1000);
+
+        function menuswitchOpen() {
+            var t = document.getElementById("main-nav");
+
+
+            t.style.display = "block";
+
+            setTimeout(function () { t.classList.toggle('open'); }, 10);
+        }
+        function menucloseClosed() {
+            var t = document.getElementById("main-nav");
+
+            t.classList.toggle('open');
+
+            setTimeout(function () { t.style.display = "none"; }, 600);
+        }
+        function formdisplay() {
+
+            var over = document.getElementById("formchangeoverlay").style.display;
+
+            var panel = document.getElementById("formchangepanel").style.display;
+
+            if (over != "none") {
+                document.getElementById("formchangeoverlay").className = "b24-window-overlay";
+                document.getElementById("formchangepanel").className = "b24-window-panel b24-window-panel-pos-right";
+
+                document.getElementById("ViewDataormchangeoverlay").style.display = "none"; document.getElementById("formchangepanel").style.display = "none";
+            }
+            else {
+                panel = "";
+                document.getElementById("formchangeoverlay").style.display = "";
+                document.getElementById("formchangepanel").style.display = "";
+                document.getElementById("formchangeoverlay").className = "b24-window-overlay b24-a-fade enter-active b24-a-fade-enter-to";
+                document.getElementById("formchangepanel").className = "b24-window-panel b24-window-panel-pos-right b24-a-slide-bottom-enter-active b24-a-slide-bottom-enter-to";
+                setTimeout(function () {
+                    document.getElementById("formchangeoverlay").className = "b24-window-overlay";
+                    document.getElementById("formchangepanel").className = "b24-window-panel b24-window-panel-pos-right";
+
+                })
+            }
+
+
+        }
+
+
+
+        /*    $("#menu-switch").click(function () {
+
+alert("tıklandı");
+var t = document.getElementById("main-nav");
+
+
+t.style.display = "block";
+
+setTimeout(function () { t.classList.toggle('open'); }, 10);
+});
+
+
+$("#close-menu").click(function () {
+alert("tıklandı");
+var t = document.getElementById("main-nav");
+
+t.classList.toggle('open');
+
+setTimeout(function () { t.style.display = "none"; }, 600);
+
+
+
+//  t.style.opacity = 1;
+
+
+
+
+
+
+
+});
+*/
+
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>
+@* linki postsuz değişmek
+    var newQueryString = window.location.protocol + "//" +
+                       window.location.host + window.location.pathname + "?urunid=" + urunid +
+                       '&durum=onay';
+                       //sayfa yenilenmeden url parametre ekleme
+                       window.history.pushState({ path: newQueryString }, '', newQueryString);*@

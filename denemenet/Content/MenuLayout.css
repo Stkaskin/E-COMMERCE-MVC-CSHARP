@@ -1,0 +1,478 @@
+﻿body {
+}
+
+.gmail-form {
+    top: 100%;
+    opacity: 0;
+    right: 0;
+    border-radius: 0;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 510px;
+    border-radius: 4px;
+    background: white;
+    -webkit-overflow-scrolling: touch;
+    -webkit-font-smoothing: antialiased;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    z-index: 99999;
+    overflow: hidden;
+    outline: 0;
+    transition: all linear 0.5s;
+}
+
+    .gmail-form.active {
+        opacity: 1;
+        top: 7%;
+        overflow: auto;
+        transition: all linear 0.5s;
+    }
+
+.gmail-overlay {
+    display: block;
+    position: fixed;
+    bottom: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    background-color: rgba(0,0,0,.5);
+    z-index: -1;
+    opacity: 0;
+    transition: all linear 0.5s;
+}
+
+    .gmail-overlay.active {
+        bottom: 0;
+        z-index: 15000;
+        opacity: 1;
+        transition: all linear 0.5s;
+    }
+
+.form-mail {
+    position: fixed;
+    right: 10px;
+    bottom: 36px;
+    z-index: 9999;
+}
+
+.whatsapp-background {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 66px;
+    border-radius: 100px;
+    background: #00a64c;
+    box-sizing: border-box;
+}
+
+.containerSend {
+    height: 50px;
+    width: 40px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+    .containerSend::after {
+        content: 'Sending';
+        color: #007298;
+        font-weight: 700;
+        position: absolute;
+        bottom: -50px;
+        left: -10px;
+    }
+
+.boxSend {
+    position: relative;
+    height: 50px;
+    width: 40px;
+    animation: box 5s infinite linear;
+}
+
+.border {
+    background: #007298;
+    position: absolute;
+}
+
+    .border.one {
+        height: 4px;
+        top: 0;
+        left: 0;
+        animation: border-one 5s infinite linear;
+    }
+
+    .border.two {
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 4px;
+        animation: border-two 5s infinite linear;
+    }
+
+    .border.three {
+        bottom: 0;
+        right: 0;
+        height: 4px;
+        width: 100%;
+        animation: border-three 5s infinite linear;
+    }
+
+    .border.four {
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 4px;
+        animation: border-four 5s infinite linear;
+    }
+
+.line {
+    height: 4px;
+    background: #007298;
+    position: absolute;
+    width: 0%;
+    left: 25%;
+}
+
+    .line.one {
+        top: 25%;
+        width: 0%;
+        animation: line-one 5s infinite linear;
+    }
+
+    .line.two {
+        top: 45%;
+        animation: line-two 5s infinite linear;
+    }
+
+    .line.three {
+        top: 65%;
+        animation: line-three 5s infinite linear;
+    }
+
+.FormSendComplate {
+    background-color: #a0be47;
+    height: 100%;
+}
+
+.FormSendComplateInner {
+    text-align: center;
+    padding-top: 40%;
+}
+
+.FormSendComplateIcon {
+    display: inline-block;
+    margin: 0 0 26px 0;
+    width: 169px;
+    height: 169px;
+    background-image: url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20viewBox%3D%220%200%20169%20169%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%3E%3Cdefs%3E%3Ccircle%20id%3D%22a%22%20cx%3D%2284.5%22%20cy%3D%2284.5%22%20r%3D%2265.5%22/%3E%3Cfilter%20x%3D%22-.8%25%22%20y%3D%22-.8%25%22%20width%3D%22101.5%25%22%20height%3D%22101.5%25%22%20filterUnits%3D%22objectBoundingBox%22%20id%3D%22b%22%3E%3CfeGaussianBlur%20stdDeviation%3D%22.5%22%20in%3D%22SourceAlpha%22%20result%3D%22shadowBlurInner1%22/%3E%3CfeOffset%20dx%3D%22-1%22%20dy%3D%22-1%22%20in%3D%22shadowBlurInner1%22%20result%3D%22shadowOffsetInner1%22/%3E%3CfeComposite%20in%3D%22shadowOffsetInner1%22%20in2%3D%22SourceAlpha%22%20operator%3D%22arithmetic%22%20k2%3D%22-1%22%20k3%3D%221%22%20result%3D%22shadowInnerInner1%22/%3E%3CfeColorMatrix%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.0886691434%200%22%20in%3D%22shadowInnerInner1%22%20result%3D%22shadowMatrixInner1%22/%3E%3CfeGaussianBlur%20stdDeviation%3D%22.5%22%20in%3D%22SourceAlpha%22%20result%3D%22shadowBlurInner2%22/%3E%3CfeOffset%20dx%3D%221%22%20dy%3D%221%22%20in%3D%22shadowBlurInner2%22%20result%3D%22shadowOffsetInner2%22/%3E%3CfeComposite%20in%3D%22shadowOffsetInner2%22%20in2%3D%22SourceAlpha%22%20operator%3D%22arithmetic%22%20k2%3D%22-1%22%20k3%3D%221%22%20result%3D%22shadowInnerInner2%22/%3E%3CfeColorMatrix%20values%3D%220%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.292285839%200%22%20in%3D%22shadowInnerInner2%22%20result%3D%22shadowMatrixInner2%22/%3E%3CfeMerge%3E%3CfeMergeNode%20in%3D%22shadowMatrixInner1%22/%3E%3CfeMergeNode%20in%3D%22shadowMatrixInner2%22/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20stroke-opacity%3D%22.05%22%20stroke%3D%22%23000%22%20fill-opacity%3D%22.07%22%20fill%3D%22%23000%22%20cx%3D%2284.5%22%20cy%3D%2284.5%22%20r%3D%2284%22/%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22/%3E%3Cuse%20fill%3D%22%23000%22%20filter%3D%22url%28%23b%29%22%20xlink%3Ahref%3D%22%23a%22/%3E%3Cpath%20fill%3D%22%23A0BE47%22%20d%3D%22M76.853%20107L57%2087.651l6.949-6.771%2012.904%2012.576L106.051%2065%20113%2071.772z%22/%3E%3C/g%3E%3C/svg%3E);
+    background-repeat: no-repeat;
+}
+
+.FormSendComplateIconActive {
+    display: inline-block;
+    margin: 0 0 26px 0;
+    width: 169px;
+    height: 169px;
+    background-image: url(../image/symbol_error.ico);
+    background-repeat: no-repeat;
+}
+
+.FormSendComplateText {
+    font-family: Segoe Print;
+}
+
+.fullBackGround {
+    display: none;
+}
+
+    .fullBackGround.active {
+        display: block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 351;
+        position: fixed;
+    }
+
+.midAlert {
+    line-height: 0.3;
+    text-align: center;
+    background: white;
+    color: #0dc50d;
+    white-space: pre-line;
+}
+
+@keyframes border-one {
+    0% {
+        width: 0;
+    }
+
+    10% {
+        width: 100%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes border-two {
+    0% {
+        height: 0;
+    }
+
+    10% {
+        height: 0%;
+    }
+
+    20% {
+        height: 100%;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+@keyframes border-three {
+    0% {
+        width: 0;
+    }
+
+    20% {
+        width: 0%;
+    }
+
+    30% {
+        width: 100%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes border-four {
+    0% {
+        height: 0;
+    }
+
+    30% {
+        height: 0%;
+    }
+
+    40% {
+        height: 100%;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+@keyframes line-one {
+    0% {
+        left: 25%;
+        width: 0;
+    }
+
+    40% {
+        left: 25%;
+        width: 0%;
+    }
+
+    43% {
+        left: 25%;
+        width: 50%;
+    }
+
+    52% {
+        left: 25%;
+        width: 50%;
+    }
+
+    54% {
+        left: 25%;
+        width: 0%
+    }
+
+    55% {
+        right: 25%;
+        left: auto;
+    }
+
+    63% {
+        width: 10%;
+        right: 25%;
+        left: auto;
+    }
+
+    100% {
+        width: 10%;
+        right: 25%;
+        left: auto;
+    }
+}
+
+@keyframes line-two {
+    0% {
+        width: 0;
+    }
+
+    42% {
+        width: 0%;
+    }
+
+    45% {
+        width: 50%;
+    }
+
+    53% {
+        width: 50%;
+    }
+
+    54% {
+        width: 0%
+    }
+
+    60% {
+        width: 50%
+    }
+
+    100% {
+        width: 50%;
+    }
+}
+
+@keyframes line-three {
+    0% {
+        width: 0;
+    }
+
+    45% {
+        width: 0%;
+    }
+
+    48% {
+        width: 50%;
+    }
+
+    51% {
+        width: 50%;
+    }
+
+    52% {
+        width: 0%
+    }
+
+    100% {
+        width: 0%;
+    }
+}
+
+@keyframes box {
+    0% {
+        opacity: 1;
+        margin-left: 0px;
+        height: 50px;
+        width: 40px;
+    }
+
+    55% {
+        margin-left: 0px;
+        height: 50px;
+        width: 40px;
+    }
+
+    60% {
+        margin-left: 0px;
+        height: 35px;
+        width: 50px;
+    }
+
+    74% {
+        msthin-left: 0;
+    }
+
+    80% {
+        margin-left: -50px;
+        opacity: 1;
+    }
+
+    90% {
+        height: 35px;
+        width: 50px;
+        margin-left: 50px;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.success-animation {
+    /* margin: 150px auto; */
+}
+
+.checkmark {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #4bb71b;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px #4bb71b;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+    position: relative;
+    top: 5px;
+    right: 5px;
+    margin: 0 auto;
+}
+
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #4bb71b;
+    fill: #fff;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes scale {
+    0%, 100% {
+        transform: none;
+    }
+
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 30px #4bb71b;
+    }
+}

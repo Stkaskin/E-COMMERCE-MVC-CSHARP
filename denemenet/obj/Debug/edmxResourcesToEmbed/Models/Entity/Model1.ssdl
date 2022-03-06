@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mvcveritabaniModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="katagori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="link" Type="nchar" MaxLength="10" />
+    <Property Name="resim" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="kullanici">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="telefon" Type="nvarchar" MaxLength="11" Nullable="false" />
+    <Property Name="adsoyad" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="sifre" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="adres" Type="nchar" MaxLength="10" />
+    <Property Name="şehir" Type="nchar" MaxLength="10" />
+    <Property Name="ilce" Type="nchar" MaxLength="10" />
+    <Property Name="mahalle" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mvcveritabani.dbo.siparisdetay' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="siparisdetay">
+    <Key>
+      <PropertyRef Name="sipkodu" />
+    </Key>
+    <Property Name="sipkodu" Type="int" Nullable="false" />
+    <Property Name="urunid" Type="nvarchar" MaxLength="200" />
+    <Property Name="urunmik" Type="int" />
+    <Property Name="urunadi" Type="nvarchar" MaxLength="200" />
+    <Property Name="urunfiyat" Type="float" />
+    <Property Name="tarih" Type="datetime" />
+  </EntityType>
+  <EntityType Name="siparisler">
+    <Key>
+      <PropertyRef Name="sipkodu" />
+    </Key>
+    <Property Name="sipkodu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kullanici" Type="nvarchar" MaxLength="50" />
+    <Property Name="tutar" Type="int" />
+    <Property Name="takipkod" Type="nvarchar" MaxLength="50" />
+    <Property Name="adres" Type="nvarchar" MaxLength="200" />
+    <Property Name="telefon" Type="nvarchar" MaxLength="50" />
+    <Property Name="ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="soyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="durum" Type="nvarchar" MaxLength="50" />
+    <Property Name="zaman" Type="nvarchar" MaxLength="50" />
+    <Property Name="il" Type="nvarchar" MaxLength="40" />
+    <Property Name="ilce" Type="nvarchar" MaxLength="80" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mvcveritabani.dbo.urunbilgi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="urunbilgi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="adi" Type="nvarchar" MaxLength="200" />
+    <Property Name="fiyat" Type="decimal" Precision="15" Scale="2" />
+    <Property Name="resim" Type="nvarchar" MaxLength="200" />
+    <Property Name="baslikaltiyazi" Type="nvarchar" MaxLength="200" />
+    <Property Name="tipi" Type="smallint" />
+    <Property Name="aciklamabaslik" Type="nvarchar" MaxLength="200" />
+    <Property Name="katagoriID" Type="nvarchar" MaxLength="200" />
+    <Property Name="fayda2" Type="nvarchar" MaxLength="200" />
+    <Property Name="fayda3" Type="nvarchar" MaxLength="200" />
+    <Property Name="fayda4" Type="nvarchar" MaxLength="200" />
+    <Property Name="fayda5" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK_siparisdetay_siparisler">
+    <End Role="siparisler" Type="Self.siparisler" Multiplicity="1" />
+    <End Role="siparisdetay" Type="Self.siparisdetay" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="siparisler">
+        <PropertyRef Name="sipkodu" />
+      </Principal>
+      <Dependent Role="siparisdetay">
+        <PropertyRef Name="sipkodu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mvcveritabaniModelStoreContainer">
+    <EntitySet Name="katagori" EntityType="Self.katagori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="kullanici" EntityType="Self.kullanici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="siparisler" EntityType="Self.siparisler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="siparisdetay" EntityType="Self.siparisdetay" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [siparisdetay].[sipkodu] AS [sipkodu], 
+    [siparisdetay].[urunid] AS [urunid], 
+    [siparisdetay].[urunmik] AS [urunmik], 
+    [siparisdetay].[urunadi] AS [urunadi], 
+    [siparisdetay].[urunfiyat] AS [urunfiyat], 
+    [siparisdetay].[tarih] AS [tarih]
+    FROM [dbo].[siparisdetay] AS [siparisdetay]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="urunbilgi" EntityType="Self.urunbilgi" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [urunbilgi].[id] AS [id], 
+    [urunbilgi].[adi] AS [adi], 
+    [urunbilgi].[fiyat] AS [fiyat], 
+    [urunbilgi].[resim] AS [resim], 
+    [urunbilgi].[baslikaltiyazi] AS [baslikaltiyazi], 
+    [urunbilgi].[tipi] AS [tipi], 
+    [urunbilgi].[aciklamabaslik] AS [aciklamabaslik], 
+    [urunbilgi].[katagoriID] AS [katagoriID], 
+    [urunbilgi].[fayda2] AS [fayda2], 
+    [urunbilgi].[fayda3] AS [fayda3], 
+    [urunbilgi].[fayda4] AS [fayda4], 
+    [urunbilgi].[fayda5] AS [fayda5]
+    FROM [dbo].[urunbilgi] AS [urunbilgi]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_siparisdetay_siparisler" Association="Self.FK_siparisdetay_siparisler">
+      <End Role="siparisler" EntitySet="siparisler" />
+      <End Role="siparisdetay" EntitySet="siparisdetay" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

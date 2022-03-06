@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mvcveritabaniModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="kullanici">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adsoyad" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sifre" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adres" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="şehir" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ilce" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="mahalle" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="siparisler">
+    <Key>
+      <PropertyRef Name="sipkodu" />
+    </Key>
+    <Property Name="sipkodu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullanici" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tutar" Type="Int32" />
+    <Property Name="takipkod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="durum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="zaman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="il" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ilce" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="siparisdetay" Relationship="Self.FK_siparisdetay_siparisler" FromRole="siparisler" ToRole="siparisdetay" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="siparisdetay">
+    <Key>
+      <PropertyRef Name="sipkodu" />
+    </Key>
+    <Property Name="sipkodu" Type="Int32" Nullable="false" />
+    <Property Name="urunid" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="urunmik" Type="Int32" />
+    <Property Name="urunadi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="urunfiyat" Type="Double" />
+    <Property Name="tarih" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="siparisler" Relationship="Self.FK_siparisdetay_siparisler" FromRole="siparisdetay" ToRole="siparisler" />
+  </EntityType>
+  <EntityType Name="urunbilgi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="adi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="fiyat" Type="Decimal" Precision="15" Scale="2" />
+    <Property Name="resim" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="baslikaltiyazi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="tipi" Type="Int16" />
+    <Property Name="aciklamabaslik" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="fayda2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="fayda3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="fayda4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="fayda5" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="katagoriID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_siparisdetay_siparisler">
+    <End Role="siparisler" Type="Self.siparisler" Multiplicity="1" />
+    <End Role="siparisdetay" Type="Self.siparisdetay" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="siparisler">
+        <PropertyRef Name="sipkodu" />
+      </Principal>
+      <Dependent Role="siparisdetay">
+        <PropertyRef Name="sipkodu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mvcveritabaniEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="kullanici" EntityType="Self.kullanici" />
+    <EntitySet Name="siparisler" EntityType="Self.siparisler" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="siparisdetay" EntityType="Self.siparisdetay" />
+    <EntitySet Name="urunbilgi" EntityType="Self.urunbilgi" />
+    <AssociationSet Name="FK_siparisdetay_siparisler" Association="Self.FK_siparisdetay_siparisler">
+      <End Role="siparisler" EntitySet="siparisler" />
+      <End Role="siparisdetay" EntitySet="siparisdetay" />
+    </AssociationSet>
+    <EntitySet Name="katagori" EntityType="mvcveritabaniModel.katagori" />
+  </EntityContainer>
+  <EntityType Name="katagori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="resim" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+</Schema>
