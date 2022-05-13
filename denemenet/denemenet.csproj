@@ -3947,11 +3947,11 @@
     <Content Include="image\tavuk\sultan-1.jpg" />
     <Content Include="image\tavuk\sultan-yavrusu-1.jpg" />
     <Content Include="image\tavuk\sultan-yumurtasu-1.jpg" />
-    <Content Include="image\urun_resim\sultan-1.jpg" />
-    <Content Include="image\urun_resim\sultan-yavrusu-1.jpg" />
-    <Content Include="image\urun_resim\sultan-yumurtasu-1.jpg" />
-    <Content Include="image\urun_resim\urunresim1.jpg" />
+    <Content Include="image\urun_resim\urunresim0.jpg" />
     <Content Include="image\urun_resim\urunresim2.jpg" />
+    <Content Include="image\urun_resim\urunresim01.jpg" />
+    <Content Include="image\urun_resim\urunresim1.jpg" />
+    <Content Include="image\urun_resim\urunresim23.jpg" />
     <Content Include="image\urun_resim\urunresim3.jpg" />
     <Content Include="image\urun_resim\urunresim4.jpg" />
     <Content Include="image\urun_resim\urunresim5.jpg" />
@@ -3959,7 +3959,7 @@
     <Content Include="image\urun_resim\urunresim7.jpg" />
     <Content Include="image\urun_resim\urunresim8.jpg" />
     <Content Include="image\urun_resim\urunresim9.jpg" />
-    <Content Include="image\urun_resim\urunresim0.jpg" />
+    <Content Include="image\urun_resim\urunresim013.jpg" />
     <Content Include="image\detakatagoriresim\katagori4.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

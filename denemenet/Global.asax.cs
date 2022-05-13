@@ -20,8 +20,8 @@ namespace denemenet
 
                 db.Database.CreateIfNotExists();
           
-                
-/*
+    /*            
+
                 //10-25 kayýt kodu--hafta 12 dk24-35
                
                 for (int i = 0; i < 10; i++)
